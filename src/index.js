@@ -1,11 +1,10 @@
-
-import './css/styles.css'
+import './css/styles.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
 import axios from 'axios';
 
-const searchingBox = document.querySelector('.searching-box');
+const searchBox = document.querySelector('.search-box');
 const searchQuery = document.querySelector('input[name="searchQuery"]');
 const upBtn = document.querySelector('.up-btn');
 const searchForm = document.querySelector('#search-form');
@@ -23,7 +22,7 @@ upBtn.style.display = 'none';
 async function fetchImages(name, page) {
   try {
     const response = await axios.get(
-      `https://pixabay.com/api/?key=39346365-41e9a5264da2b2e0dfe2a4908&q=${name}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`,
+      `https://pixabay.com/api/?key=39346365-41e9a5264da2b2e0dfe2a4908&q=${name}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`
     );
     console.log(response);
     return response.data;
@@ -52,10 +51,9 @@ async function eventHandler(ev) {
         console.log(`Current page: ${page}`);
         lightbox();
         //const lightbox = new SimpleLightbox('.gallery a', {});
-        //smooth scrool to up
         upBtn.style.display = 'block';
         upBtn.addEventListener('click', () => {
-          searchingBox.scrollIntoView({
+          searchBox.scrollIntoView({
             behavior: 'smooth',
           });
         });
@@ -65,13 +63,15 @@ async function eventHandler(ev) {
         } else {
           loadBtn.style.display = 'none';
           console.log('There are no more images');
-          Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+          Notiflix.Notify.info(
+            "We're sorry, but you've reached the end of search results."
+          );
         }
       } else {
         Notiflix.Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.',
+          'Sorry, there are no images matching your search query. Please try again.'
         );
-        clear(gallery); //reset view in case of failure
+        clear(gallery);
       }
     })
     .catch(error => console.log(error));
@@ -113,7 +113,7 @@ loadBtn.addEventListener(
     fetchImages(name, page).then(name => {
       let totalPages = Math.ceil(name.totalHits / perPage);
       renderGallery(name);
-      //smooth scroll
+      // SCROLL//
       const { height: cardHeight } = document
         .querySelector('.gallery')
         .firstElementChild.getBoundingClientRect();
@@ -122,17 +122,18 @@ loadBtn.addEventListener(
         top: cardHeight * 2,
         behavior: 'smooth',
       });
-      //===
+
       lightbox().refresh();
       console.log(`Current page: ${page}`);
 
       if (page >= totalPages) {
         loadBtn.style.display = 'none';
         console.log('There are no more images');
-        Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+        Notiflix.Notify.info(
+          "We're sorry, but you've reached the end of search results."
+        );
       }
     });
-    //console.log("Load more button clicked");
   },
-  true,
+  true
 );

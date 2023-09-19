@@ -19,9 +19,9 @@
   }
   
   @media screen and (min-width: 300px) {
-    .searching-box {
+    .search-box {
       display: flex;
-      background-color: rgb(98, 98, 204);
+      background-color: rgb(78, 162, 231);
       justify-content: center;
       align-items: center;
     }
@@ -49,6 +49,11 @@
       padding-left: 10px;
       padding-right: 10px;
       cursor: pointer;
+    }
+
+    .search-btn:hover {
+      background-color: rgb(206, 210, 212);
+      
     }
   
     .gallery {
@@ -158,23 +163,32 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .load-more {
     margin-bottom: 10px;
     width: 202px;
     min-height: 50px;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.875;
     letter-spacing: 0.06em;
-    color: white;
-    background-color: midnightblue;
+    background-color: #49aaff;
     border: none;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
     border-radius: 6px;
     cursor: pointer;
     text-align: center;
+    background-color: aliceblue;
+    color: #49aaff;
+    border: 1px solid #49aaff;
+
   }
+  
+.load-more:hover{
+    background-color:  #49aaff;
+    color:white;
+    border: 1px solid #49aaff;
+}
   
   .up-btn {
     position: fixed;
@@ -183,11 +197,17 @@
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
-    background-color: midnightblue;
+    background-color: rgb(182, 214, 242);
     border: none;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
     border-radius: 50px;
     cursor: pointer;
     text-align: center;
+  }
+  .up-btn:hover{
+    background-color:  #49aaff;
+    color: #49aaff;
+    border: none;
+
   }
   
